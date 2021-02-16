@@ -7,20 +7,25 @@ let discription = `
   <p>THis is my Third</p>
 </div>`;
 
-const str = ' P tag';
 let index = [];
 
 async function countNumberOfPTag() {
   // Find how many p tag inside any string
-  var regex = /((<\/)\p+(>))/g;
+  // var regex = /((<\/)\p+(>))/g;
+  var regex = /<p>/gi;
   let result;
   while ((result = regex.exec(discription))) {
     index.push(result.index);
   }
+  console.log(index);
 
   //   Call insert Function to insert data
-  index.forEach((element) => {
-    const data = insert(discription, element, str);
+  index.forEach((element, i) => {
+    const data = insert(
+      discription,
+      element,
+      `<h1>Heading <span>${i}</span></h1>`
+    );
     discription = data;
   });
   document.querySelector('body').innerHTML = discription.join('');
